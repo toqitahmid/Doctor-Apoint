@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image"; // Next.js native Image component
 import { Card, Button, Chip } from "@heroui/react"; // Removed 'Image' from here
 import { MapPinned } from "lucide-react";
+import Link from "next/link";
 
 export default function DoctorCard({ doctor }) {
   const currentDoctor = doctor || {
@@ -82,13 +83,16 @@ export default function DoctorCard({ doctor }) {
 
       {/* Card Action Button */}
       <Card.Footer className="p-2 pt-1">
+        <Link
+        href={`/doctors/${currentDoctor._id}`}
+        >
         <Button
           variant="outline"
           className="w-full font-medium rounded-lg shadow-sm"
-          onClick={() => console.log(`Viewing details for ${currentDoctor.id}`)}
         >
           View Details
         </Button>
+        </Link>
       </Card.Footer>
     </Card>
   );
