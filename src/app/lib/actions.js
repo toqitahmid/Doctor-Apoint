@@ -33,3 +33,9 @@ export const bookNewApointment = async(formData) => {
     }
     return data;
 }
+
+export const getAllAppointments = async() => {
+    const res = await fetch("http://localhost:5000/apointments");
+    const data = await res.json();
+    return data;
+}
