@@ -3,7 +3,10 @@ const nextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "i.ibb.co.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "i.ibb.co.com" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+    ],
   },
 };
 
