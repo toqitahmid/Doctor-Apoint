@@ -1,9 +1,9 @@
 'use client'
 import { Label, TimeField } from "@heroui/react";
-const TimePicker = ({name}) => {
+const TimePicker = ({name, value, onChange}) => {
   return (
     <div>
-      <TimeField name={name} className="w-[150px]">
+      <TimeField name={name} value={value} onChange={onChange} className="w-[150px]">
         <Label>Time</Label>
         <TimeField.Group>
           <TimeField.Input>

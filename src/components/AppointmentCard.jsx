@@ -1,3 +1,4 @@
+'use client'
 import {
   Calendar,
   Clock,
@@ -6,8 +7,10 @@ import {
   Smartphone,
   Comment,
 } from "@gravity-ui/icons";
+import { Button, Modal, Surface } from "@heroui/react";
+import EditApointmentsInfo from "./EditApointmentsInfo";
 
-const AppointmentCard = ({ appointment }) => {
+const AppointmentCard = ({ appointment}) => {
   const { name, email, phone, sex, apointmentDate, apointmentTime, message } =
     appointment;
 
@@ -24,6 +27,16 @@ const AppointmentCard = ({ appointment }) => {
   const ampm = timeInt >= 12 ? "PM" : "AM";
   const displayHours = timeInt % 12 || 12;
   const formattedTime = `${displayHours}:${minutes} ${ampm}`;
+
+  const handleDelete = async() => {
+      const res = await fetch(
+        `http://localhost:5000/apointments/${appointment._id}`,{
+          method: 'DELETE',
+        });
+        const data = await res.json();
+        if(data.deletedCount > 0){
+        }
+    }
 
   return (
     <div className="max-w-md w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm overflow-hidden p-6 hover:shadow-md transition-shadow">
@@ -103,6 +116,25 @@ const AppointmentCard = ({ appointment }) => {
             </div>
           </div>
         )}
+      </div>
+      <div className="flex justify-between my-3">
+        <Modal>
+          <Button variant="outline">Edit</Button>
+          <Modal.Backdrop>
+            <Modal.Container placement="auto">
+              <Modal.Dialog className="sm:max-w-md">
+                <Modal.CloseTrigger />
+                <Modal.Body className="p-6">
+                  <Surface variant="default">
+                    <EditApointmentsInfo key={appointment._id} appointment={appointment}></EditApointmentsInfo>
+                  </Surface>
+                </Modal.Body>
+              </Modal.Dialog>
+            </Modal.Container>
+          </Modal.Backdrop>
+        </Modal>
+
+        <Button variant="danger" onClick={handleDelete}>Delete</Button>
       </div>
     </div>
   );

@@ -15,10 +15,8 @@ import DatePickerComponent from "./DatePicker";
 // import { useState } from "react";
 
 
-const BookApoinmentForm = ({ doctor, bookNewApointmentAction }) => {
-  // const [datePicker, setDatePicker] = useState(null);
-  // const [timePicker, setTimePicker] = useState(null);
-  // const {name, _id} = doctor;
+const BookApoinmentForm = ({bookNewApointmentAction }) => {
+ 
 
   return (
     <div>

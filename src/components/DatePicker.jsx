@@ -1,10 +1,10 @@
 "use client";
 import { DateField, DatePicker, Label, Calendar } from "@heroui/react";
 
-const DatePickerComponent = ({ name }) => {
+const DatePickerComponent = ({ name, value, onChange }) => {
   return (
     <div>
-      <DatePicker name={name}>
+      <DatePicker name={name} value={value} onChange={onChange}>
         <Label>Date</Label>
         <DateField.Group>
           <DateField.Input>
