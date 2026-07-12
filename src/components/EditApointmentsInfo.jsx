@@ -67,7 +67,7 @@ const EditApointmentsInfo = ({ appointment, onSuccess }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/apointments/${appointment._id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/apointments/${appointment._id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

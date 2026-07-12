@@ -30,9 +30,11 @@ const AppointmentCard = ({ appointment}) => {
 
   const handleDelete = async() => {
       const res = await fetch(
-        `http://localhost:5000/apointments/${appointment._id}`,{
-          method: 'DELETE',
-        });
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/apointments/${appointment._id}`,
+        {
+          method: "DELETE",
+        },
+      );
         const data = await res.json();
         if(data.deletedCount > 0){
         }

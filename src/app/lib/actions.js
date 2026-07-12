@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const getDoctorsData = async() => {
-    const res = await fetch(`http://localhost:5000/doctors`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
     const data = await res.json();
     return data;
 }
@@ -14,11 +14,14 @@ export const getDoctorsDataById = async(id) => {
       headers: await headers(),
     });
     console.log(token);
-    const res = await fetch(`http://localhost:5000/doctors/${id}`, {
-      headers: {
-        authorization: `${token}`,
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${id}`,
+      {
+        headers: {
+          authorization: `${token}`,
+        },
       },
-    });
+    );
     if (!res.ok) {
       console.error(`Backend returned status: ${res.status}`);
       return null;
@@ -29,13 +32,16 @@ export const getDoctorsDataById = async(id) => {
 
 export const bookNewApointment = async(formData) => {
     const newApointment = Object.fromEntries(formData.entries());
-    const res = await fetch("http://localhost:5000/apointments",{
-        method: 'POST',
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/apointments`,
+      {
+        method: "POST",
         headers: {
-            'Content-type': 'application/json'
+          "Content-type": "application/json",
         },
-        body: JSON.stringify(newApointment)
-    });
+        body: JSON.stringify(newApointment),
+      },
+    );
     const data = await res.json();
     if(data.insertedId){
         redirect('/apointments')
@@ -48,11 +54,14 @@ export const getAllAppointments = async() => {
           headers: await headers()
         })
         console.log(token);
-    const res = await fetch("http://localhost:5000/apointments",{
-        headers:{
-            authorization:`${token}`
-        }
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/apointments`,
+      {
+        headers: {
+          authorization: `${token}`,
+        },
+      },
+    );
     const data = await res.json();
     return data;
 }
