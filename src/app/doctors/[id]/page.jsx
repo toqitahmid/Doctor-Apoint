@@ -1,8 +1,8 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Card, Chip } from "@heroui/react";
-import { getDoctorsDataById } from "@/app/lib/actions";
+import { Button, Card, Chip, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { bookNewApointment, getDoctorsDataById } from "@/app/lib/actions";
+import BookApoinmentForm from "@/components/BookApoinmentForm";
 
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -133,13 +133,25 @@ const DoctorDetailsPage = async ({ params }) => {
 
               {/* Booking Trigger Action Button */}
               <div className="pt-2">
-                <Button
-                  size="lg"
-                  color="primary"
-                  className="w-full sm:w-auto px-12 font-bold shadow-md shadow-primary/20 hover:opacity-95 transition-opacity"
-                >
-                  Book Appointment Now
-                </Button>
+                <Modal>
+                  <Button className='min-w-full' variant="secondary">Book Apointment</Button>
+                  <Modal.Backdrop>
+                    <Modal.Container placement="auto">
+                      <Modal.Dialog className="sm:max-w-md">
+                        <Modal.CloseTrigger />
+                        <Modal.Body className="p-6">
+                          <Surface variant="default">
+                            <BookApoinmentForm 
+                            doctor={doctor}
+                            bookNewApointmentAction={bookNewApointment}
+                            ></BookApoinmentForm>
+                          </Surface>
+                        </Modal.Body>
+                        
+                      </Modal.Dialog>
+                    </Modal.Container>
+                  </Modal.Backdrop>
+                </Modal>
               </div>
             </Card.Content>
           </Card>

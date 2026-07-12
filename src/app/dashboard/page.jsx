@@ -1,3 +1,4 @@
+import ApointmentTab from "@/components/ApointmentTab";
 import UserProfileCard from "@/components/ProfileTab";
 import { Tabs } from "@heroui/react";
 
@@ -22,7 +23,7 @@ const page = () => {
             <UserProfileCard></UserProfileCard>
         </Tabs.Panel>
         <Tabs.Panel className="pt-4" id="apointments">
-          <p>Generate and download detailed reports.</p>
+        <ApointmentTab></ApointmentTab>
         </Tabs.Panel>
       </Tabs>
     </div>

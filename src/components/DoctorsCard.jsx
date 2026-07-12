@@ -33,7 +33,6 @@ export default function DoctorCard({ doctor }) {
           fill
           sizes="(max-width: 360px) 100vw, 360px"
           priority={true}
-          unoptimized
           className="object-cover"
         />
       </div>

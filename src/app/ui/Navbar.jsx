@@ -23,7 +23,6 @@ export default function Navbar() {
     data: session,
   } = authClient.useSession();
   const user = session?.user;
-  console.log(user);
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
