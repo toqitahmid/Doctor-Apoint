@@ -102,8 +102,8 @@ export default function Footer() {
 
         {/* BOTTOM SECTION: Copyright info */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>&copy; {currentYear} BrandName. All rights reserved.</p>
-          <p>Built cleanly with Next.js & Tailwind CSS.</p>
+          <p>&copy; {currentYear} DocApoint. All rights reserved.</p>
+          <p>Built cleanly with Next js . Node . Express js</p>
         </div>
       </div>
     </footer>
