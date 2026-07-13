@@ -14,9 +14,11 @@ const DoctorDetailsPage = async ({ params }) => {
         <p className="text-zinc-500 font-medium text-lg">
           Doctor profile not found.
         </p>
-        <Button as={Link} href="/doctors" color="primary" variant="flat">
+        <Link href='/doctors'>
+        <Button color="primary" variant="flat">
           Back to Directory
         </Button>
+        </Link>
       </div>
     );
   }
