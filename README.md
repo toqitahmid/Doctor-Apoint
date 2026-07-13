@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Doctor Appointment Manager — Frontend
+
+A web application for browsing doctors, viewing detailed profiles, and booking appointments online. Built with Next.js (App Router) and deployed on Vercel.
+
+**Live site:** [doctor-apoint.vercel.app](https://doctor-apoint.vercel.app)
+
+## Features
+
+- 🔍 Browse a directory of doctors with specialty, hospital, and availability info
+- 👨‍⚕️ View detailed doctor profiles (experience, consultation fee, bio, available time slots)
+- 📅 Book appointments directly from a doctor's profile
+- 🔐 Authentication via Google OAuth (Better Auth)
+- 📱 Responsive UI built with HeroUI components
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, Server Components)
+- **UI Library:** [HeroUI](https://heroui.com/) (`@heroui/react`)
+- **Authentication:** [Better Auth](https://www.better-auth.com/) with Google OAuth
+- **Styling:** Tailwind CSS
+- **Deployment:** [Vercel](https://vercel.com/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm / yarn / pnpm
+- A running instance of the [backend server](#) (see backend README)
+
+### Installation
+
+```bash
+git clone https://github.com/<your-username>/doctor-apoint-app.git
+cd doctor-apoint-app
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+BETTER_AUTH_SECRET=your-random-secret
+BETTER_AUTH_URL=http://localhost:3000
+MONGODB_URI=your-mongodb-connection-string
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+NEXT_PUBLIC_SERVER_URL=http://localhost:5000
+```
+
+> ⚠️ Never commit `.env.local` or any file containing real secrets. Add it to `.gitignore`.
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── doctors/
+│   ├── page.jsx          # Doctors listing page
+│   └── [id]/
+│       └── page.jsx      # Doctor details page (Server Component)
+├── lib/
+│   └── actions.js         # Server actions (fetch doctors, book appointments)
+├── layout.js               # Root layout + global metadata
+components/
+└── BookApoinmentForm.jsx  # Appointment booking form
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is deployed on **Vercel**. On push to the main branch, Vercel automatically builds and deploys the app.
 
-## Deploy on Vercel
+Make sure the following environment variables are set in **Vercel → Project Settings → Environment Variables**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Variable | Description |
+|---|---|
+| `BETTER_AUTH_SECRET` | Secret used to sign auth sessions |
+| `BETTER_AUTH_URL` | Deployed frontend URL (e.g. `https://doctor-apoint.vercel.app`) |
+| `MONGODB_URI` | MongoDB connection string used by Better Auth |
+| `GOOGLE_CLIENT_ID` | Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
+| `NEXT_PUBLIC_SERVER_URL` | URL of the deployed backend API (Render) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Related Repositories
+
+- [Backend API (Express + MongoDB)](#)
+
+## License
+
+This project is licensed under the MIT License.
