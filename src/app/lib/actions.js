@@ -9,26 +9,26 @@ export const getDoctorsData = async() => {
     return data;
 }
 
-export const getDoctorsDataById = async (id) => {
-  try {
-    const session = await auth.api.getSession({ headers: await headers() });
-    const token = session?.session?.token ?? null;
-
+export const getDoctorsDataById = async(id) => {
+    const { token } = await auth.api.getToken({
+      headers: await headers(),
+    });
+    console.log(token);
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/doctors/${id}`,
       {
-        headers: token ? { authorization: token } : {},
-        cache: "no-store",
+        headers: {
+          authorization: `${token}`,
+        },
       },
     );
-
-    if (!res.ok) return null;
-    return await res.json();
-  } catch (err) {
-    console.error("getDoctorsDataById failed:", err);
-    return null;
-  }
-};
+    if (!res.ok) {
+      console.error(`Backend returned status: ${res.status}`);
+      return null;
+    }
+    const data = await res.json();
+    return data;
+}
 
 export const bookNewApointment = async(formData) => {
     const newApointment = Object.fromEntries(formData.entries());
