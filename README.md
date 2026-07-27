@@ -102,4 +102,4 @@ Make sure the following environment variables are set in **Vercel → Project Se
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. 
